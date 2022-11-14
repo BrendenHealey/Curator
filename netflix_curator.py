@@ -21,7 +21,7 @@ def process(input):
     tags = nltk.pos_tag(word_tokenize(input))
     # Extract Proper Nouns for Person
     pos_tagged = [t[0] for t in tags if t[1] == 'NNP']
-    print(pos_tagged)
+    #print(pos_tagged)
 
     return tokens, pos_tagged
 
@@ -39,14 +39,14 @@ if __name__ == '__main__':
                                                                 'Howdy Ho! What is your name?']},
         {'keyword': ['feel'], 'answer': ['You are not the only one', "I can't relate to",
                                          'I am not here to listen to you']},
-        {'keyword': ['name', 'am'], 'answer': ['How can I help you?', 'What can I do for you']},
+        {'keyword': ['name', 'am'], 'answer': ['How can I help you', 'What can I do for you']},
         {'keyword': ['like', 'love'], 'answer': ['I do', 'I do not']},
         {'keyword': ['hate'], 'answer': ['Understandable!', 'What a shame.']},
         {'keyword': ['thanks', 'thank'], 'answer': ['It is my pleasure.', 'No problem!', 'You are welcome.']},
         {'keyword': ['titl', 'call'], 'answer': ['Here are the matches based on the search title:']},
         {'keyword': ['genr'], 'answer': ['Here are the matches of your requested genre:']},
         {'keyword': ['about'], 'answer': ['Here are the matches with your description:']},
-        {'keyword': ['act', 'actor'], 'answer': ['Here are the matches with your requested actor(s):']},
+        {'keyword': ['act', 'actor', 'star'], 'answer': ['Here are the matches with your requested actor(s):']},
         {'keyword': ['direct', 'director'],
          'answer': ['Here are the matches directed by your requested director:']},
         {'keyword': ['rate'], 'answer': ['Here are the matches based on your requested rating:']},
@@ -64,7 +64,7 @@ if __name__ == '__main__':
         # Exit
         if userInput.lower() == 'exit' or userInput.lower() == 'quit':
             print('Curator: See you again!')
-            print(user)
+            #print(user)
             if user['name'] is not None:
                 file_name = user['name'] + '.txt'
                 f = open(file_name, 'wb')
@@ -163,7 +163,7 @@ if __name__ == '__main__':
                         else:
                             print("No matching director was found.")
                     # Search Actor
-                    elif 'act' in keyword or 'actor' in keyword:
+                    elif 'act' in keyword or 'actor' in keyword or 'star' in keyword:
                         print('Curator: ', random.choice(i['answer']))
                         result = kb.loc[kb['cast'].str.contains(" ".join(entity), case=False, na=False)]
                         if len(result) > 3:
